@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Finish at 2:14 AM, Feb 06th, 2012 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- METADATA -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>LeoLink&#174;</title>
+	
+	<!-- ICON -->
+    <link rel="icon" href="./img/leolink.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/leolink.ico" type="image/x-icon" />	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="./css/style.css" />
+	
+	<!-- SCRIPT -->
+	<script type="text/javascript" src="./js/jquery-1.7.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.spritely-0.6.1.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+		(function($) {
+			// global variables
+			var frames;
+			var foreword;
+			var lastWindowHeight = $(window).height();
+			var lastWindowWidth = $(window).width();
+			
+			$(document).ready(function() {  
+				// spritely background
+				$('#cloud1').pan({fps: 30, speed: 1.2, dir: 'left', depth: 10});
+				$('#cloud2').pan({fps: 30, speed: 0.8, dir: 'right', depth: 30});
+				r2l();
+				// get all squares
+				frames = $('.square');		
+			});  	
+
+			$(window).resize(function() {
+				//confirm window was actually resized
+				if($(window).height()!=lastWindowHeight || $(window).width()!=lastWindowWidth) {
+					//set this windows size
+					lastWindowHeight = $(window).height();
+					lastWindowWidth = $(window).width();
+					// reinitialise
+					frames.css("width", "100%");					
+					frames.css("height", "auto");	
+					document.getElementById("content").style.top = String(document.getElementById("header").offsetHeight) + "px";					
+				}
+			});
+		})(jQuery);
+		
+		// change clouds' direction
+		function r2l() { $('#cloud1').spChangeDir('right'); $('#cloud2').spChangeDir('left'); setTimeout(l2r,1000*60*5); }		
+		function l2r() { $('#cloud1').spChangeDir('left'); $('#cloud2').spChangeDir('right'); setTimeout(r2l,1000*60*5); }
+		
+		// Latest posts from tech.leolink.net
+		var numposts = 1;
+		var showpostdate = true;
+		function get_latest_posts(json)
+		{
+			document.write("<ul>");
+			for (var i = 0; i < numposts; i++)
+			{
+				var entry = json.feed.entry[i];
+				var posttitle = entry.title.$t;
+				var posturl;
+				if (i == json.feed.entry.length)
+					break;
+				for (var k = 0; k < entry.link.length; k++)
+				{
+					if (entry.link[k].rel == 'alternate')
+					{
+					  posturl = entry.link[k].href;
+					  break;
+					}
+				}
+				posttitle = posttitle.link(posturl);
+				var postdate = entry.published.$t;
+				var cdyear = postdate.substring(0,4);
+				var cdmonth = postdate.substring(5,7);
+				var cdday = postdate.substring(8,10);
+				var monthnames = new Array();
+				monthnames[1] = "Jan";
+				monthnames[2] = "Feb";
+				monthnames[3] = "Mar";
+				monthnames[4] = "Apr";
+				monthnames[5] = "May";
+				monthnames[6] = "Jun";
+				monthnames[7] = "Jul";
+				monthnames[8] = "Aug";
+				monthnames[9] = "Sep";
+				monthnames[10] = "Oct";
+				monthnames[11] = "Nov";
+				monthnames[12] = "Dec";
+				document.write('<li style="margin-bottom: 5px">');
+				document.write('<span>');
+			
+				document.write(posttitle);
+				if (showpostdate == true)
+					document.write(' - ' + cdday + ' ' + monthnames[parseInt(cdmonth,10)]);
+				document.write('</span>');
+				document.write('</li>');
+			}
+			document.write("</ul>");
+		}		
+	//]]>
+	</script>
+</head>
+<body>
+<!-- Spritely Background Start -->		
+<div id="cloud1"></div>
+<div id="cloud2"></div>
+<!-- Spritely Background End -->
+
+<div id="wrapper">
+	<div id="header">
+		<div id="header-left">
+			<div id="news-feed"><div class="square">
+				<span class="square-title"><a href="http://tech.leolink.net" title="Checkout my tech blog">My latest posts</a></span>
+				<div class="square-content" id="latest-posts">
+				<script type='text/javascript' src="http://tech.leolink.net/feeds/posts/default?orderby=published&alt=json-in-script&callback=get_latest_posts"></script>
+				<noscript> Oops! Make sure JavaScript is enabled in your browser. </noscript>
+				</div>
+			</div></div>
+		</div>	
+		<div id="header-right">
+			<div id="my-name">
+				<h3>Hello, my name is</h3>
+				<h1>Leo Link</h1>
+				<h5>I'm from Vietnam, nice to meet you :-)</h5>
+			</div>
+		</div>		
+	</div>
+
+	<div id="content">
+		<div id="content-1-left">		
+		</div>
+		
+		<div id="content-1-right">
+			<div id="profile"><div class="square">
+				<span class="square-title">Who Am I</span>
+				<div class="square-content">
+					<ul>
+						<li>A DotA player (DotA stands for "Defense of the Ancients" - a custom game of Warcraft III)</li>
+						<li>A programmer</li>
+						<li>A music lover (all kinds of music)</li>
+						<li>A tech lover</li>
+						<li>A web programming lover</li>
+						<li>A computer & internet addict</li>
+						<li>And an English learner :(</li>
+					</ul>
+				</div>
+			</div></div>		
+		</div>
+		
+		<div id="content-2-left">
+			<div id="get-in-touch"><div class="square">
+				<span class="square-title">Something about me...</span>
+				<div class="square-content">	
+					<ul>
+						<li><a href="http://tech.leolink.net">My tech blog</a> &copy; 2012</li>
+						<li><a href="http://blog.leolink.net">My personal blog</a> &copy; 2010</li>	
+						<li><a href="https://facebook.com/mrleolink">Facebook</a> &copy; 2009</li>
+						<li><a href="https://twitter.com/mrleolink">Twitter</a> &copy; 2010</li>
+						<li><a href="mailto:webmaster@leolink.net">webmaster@leolink.net</a> &copy; 2010</li>
+					</ul>
+				</div>
+			</div></div>		
+		</div>
+		
+		<div id="content-2-right">
+		</div>
+		
+		<div id="content-3-left">
+		</div>
+		
+		<div id="content-3-right">
+			<div id="foreword"><div class="square">
+				<span class="square-title">About</span>
+				<div class="square-content">				
+					<span style="display:block">I will make this home page better as soon as I have free time, hope you will find changes everytime you come here.</span>
+					<span id="date">updated on Jan 28th, 2012</span>					
+				</div>
+			</div></div>		
+		</div>
+	</div>
+</div>
+
+<!-- Just for aligning "header" and "content" - Start -->
+<script type="text/javascript">
+//<![CDATA[
+	document.getElementById("content").style.top = String(document.getElementById("header").offsetHeight) + "px";
+//]]>
+</script>
+<!-- Just for aligning "header" and "content" - End -->
+</body>
+</html>
