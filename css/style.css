@@ -121,6 +121,7 @@ a:hover {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	white-space: nowrap;
+	line-height: normal;
 }
 #my-name h3 {	
 	width: 100%;
@@ -128,6 +129,7 @@ a:hover {
 	color: #333;	
 	overflow: visible;
 	white-space: nowrap;	
+	margin-bottom: -5px;
 }
 #my-name h5 {
 	width: 100%;	
@@ -135,6 +137,7 @@ a:hover {
 	text-align: left;
 	color: #333;	
 	margin-bottom: 10px;
+	margin: auto;
 }
 #news-feed {
 	width: 90%;
