@@ -177,8 +177,8 @@
 			<div id="foreword"><div class="square">
 				<span class="square-title">About</span>
 				<div class="square-content">				
+					<span style="display:block">I'm thinking about replace this homepage by a Jekyll powered one, but I'm not sure yet ;-)</span><br />
 					<span style="display:block">I will make this home page better as soon as I have free time, hope you will find changes everytime you come here.</span>
-					<span style="display:block">I'm thinking about replace this homepage by a Jekyll powered one, but I'm not sure yet ;)</span>
 					<span id="date">Last updated: <strike>Jan 28th, 2012</strike>June 9th, 2014</span>					
 				</div>
 			</div></div>		
@@ -189,8 +189,12 @@
 <!-- Just for aligning "header" and "content" - Start -->
 <script type="text/javascript">
 //<![CDATA[
-	document.getElementById("content").style.top = String(document.getElementById("header").offsetHeight) + "px";
+//	document.getElementById("content").style.top = String(document.getElementById("header").offsetHeight) + "px";
 //]]>
+$(document).ready(function () {
+	var height = $("#header").height();
+	$("#content").css("top",height+"px");
+});
 </script>
 <!-- Just for aligning "header" and "content" - End -->
 </body>
